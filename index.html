@@ -2,16 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVJkEZSMUkrQ6usKu8zTlHnVlKk7ih7gMH8zBsIs26QIL3XWVe2iW92Nscm7newsS/CAoget5YA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
 </head>
 <body>
 
@@ -26,6 +23,8 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
@@ -35,101 +34,133 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-
-           <div class="hero-image">
-           <div class="glow-shape">
-        <img src="chetan.png" alt="Profile Photo">
-           </div>
-    </div>
-</div>
-        
-
         <div class="hero-content">
             <h1>
                 Hi, I'm CHETAN PATEL,
-            <span>Digital Designer</span>
-                & Developer
-            </h1>
-
+                </h1>
             <p>
                 I specialize in architecting high-performance digital systems and
                 immersive user experiences. Combining precision code with futuristic
                 aesthetics to build the web of tomorrow.
             </p>
-
-            <div class="hero-buttons">
-                <button class="primary-btn">Hire Me</button>
-                <button href="#contact" class="secondary-btn">Contact Me</button>
-            </div>
-
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/chetanpatel2117" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com/chetanpatel2117" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
                 <a href="mailto:chetanpatel171005@gmail.com"><i class="fa-regular fa-envelope"></i></a>
             </div>
-        </div>
-    </section>
-<!----about------->
-<section id="about" class="about">
-    <h2>About <span>Me</span></h2>
-    <p>
-        I'm a passionate developer with a keen interest in crafting 
-        innovative solutions that blend cutting-edge technology
-         with sleek design. As a fresher entering the industry,
-          I'm eager to apply my knowledge to diverse projects, from
-           web applications to digital experiences. 
-           My expertise includes system architecture, UI/UX design, and web development, 
-           allowing me to create clean and engaging user journeys. I'm enthusiastic about pushing the boundaries 
-           of what's possible in the digital realm and am always eager to take on new challenges 
-           that allow me to learn and grow.
-    </p>
+            <div class="hero-buttons">
+                <button class="primary-btn" type="button" onclick="openResumeModal()">download resume</button>
+                <button href="#projects" class="secondary-btn">view projects</button>
+            </div>
 
-</section>
-<!-----------resume---------------->
-<section id="resume" class="resume">
-    <h2>Resume <span>Available</span></h2>
-    <p>
-        Download or view my full resume to see a detailed breakdown of my experience,
-        skills, and completed projects.
-    </p>
-    <div class="resume-buttons">
-        <a href="resume.pdf" download class="primary-btn">Download Resume</a>
-        <a href="resume.pdf" target="_blank" rel="noopener" class="secondary-btn">View Resume</a>
+
+        </div>
+           <div class="hero-image">
+           <div class="glow-shape">
+        <img src="chetan.png" alt="Profile Photo">
+           </div>
+        </div>
+
+    </section>
+    <br>
+    <br>    
+<!-- Resume Modal -->
+<div id="resume-modal" class="resume-modal hidden" onclick="closeResumeModal(event)">
+    <div class="resume-modal-content" onclick="event.stopPropagation()">
+        <button class="resume-modal-close" type="button" aria-label="Close resume preview" onclick="closeResumeModal(event)">&times;</button>
+        <div class="resume-modal-header">
+            <h2>Resume Preview</h2>
+            <p class="resume-modal-subtitle">Download the resume or view it in fullscreen.</p>
+        </div>
+        <div class="resume-modal-body">
+            <embed class="resume-embed" src="CV CHETAN.pdf" type="application/pdf" />
+        </div>
+        <div class="resume-actions">
+            <a class="resume-action-btn download-btn" href="CV CHETAN.pdf" download="CV CHETAN.pdf">Download Resume</a>
+            <a class="resume-action-btn view-btn" href="CV CHETAN.pdf" target="_blank" rel="noopener">View Fullscreen</a>
+        </div>
+    </div>
+</div>
+
+<!-- About -->
+ <section id="about" class="about">
+    <div class="about-container">
+        <img src="about.png" alt="Profile Photo">
+    </div>
+    <div class="about-text">
+        <h2>About <span>Me</span></h2>
+        <p>
+            I'm a passionate developer with a keen interest in crafting
+            innovative solutions that blend cutting-edge technology
+            with sleek design. As a fresher entering the industry,
+            I'm eager to apply my knowledge to diverse projects, from
+            web applications to digital experiences. My expertise includes
+            system architecture, UI/UX design, and web development,
+            allowing me to create clean and engaging user journeys. I'm
+            enthusiastic about pushing the boundaries of what's possible
+            in the digital realm and am always eager to take on new
+            challenges that allow me to learn and grow.
+        </p>
+         <div class="info-boxes">
+
+            <div class="box">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Location</h3>
+                <p>bardoli, surat, Gujarat</p>
+            </div>
+
+            <div class="box">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>Education</h3>
+                <p>Final Year B.E/CSE</p>
+            </div>
+
+        </div>
+    </div>
+
+ </section>
+<!-----------skills---------------->
+<section id="skills" class="skills">
+    <h2>Skills</h2>
+    <span class="tag">WHAT I KNOW</span>
+
+    <div class="skills-grid">
+        <div class="skill-card">
+            <i class="fa-solid fa-code"></i>
+            <h3>Front-end</h3>
+            <span>HTML, CSS, JavaScript</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-server"></i>
+            <h3>Back-end</h3>
+            <span>Node.js, Express, PHP</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-database"></i>
+            <h3>Database</h3>
+            <span>MongoDB, MySQL</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-palette"></i>
+            <h3>UI/UX design</h3>
+            <span>Photoshop</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-code"></i>
+            <h3>Languages</h3>
+            <span>Python, JavaScript, Java</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-tools"></i>
+            <h3>Tools</h3>
+            <span>Git, GitHub, VS Code</span>
+        </div>
     </div>
 </section>
 
-<!-----------skills---------------->
-<section id="skills" class="skills">
-    <div class="skills">
-        <h2>Skills</h2>
-        <span class="tag">WHAT I KNOW</span>
-
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fa-solid fa-code"></i>
-                <h3>Programming</h3>
-                <p>Proficient in JavaScript, Python, and Java for full-stack development.</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fa-solid fa-palette"></i>
-                <h3>Design</h3>
-                <p>Skilled in UI/UX design with a focus on modern aesthetics.</p>
-            </div>
-
-            <div class="skill-card">
-                <i class="fa-solid fa-database"></i>
-                <h3>Data Analytics</h3>
-                <p>Experienced in data visualization and analytics tools.</p>
-            </div>
-        </div>
-</section>
-
-    <!-- Services -->
+<!------------------------------- Services -------------------------------->
     <section id="services" class="services">
         <h2>Services</h2>
-        <span class="tag">WHAT I OFFER</span>
-
         <div class="services-grid">
             <div class="service-card">
                 <div class="icon">
@@ -137,7 +168,7 @@
                 </div>
                 <h3>Web Development</h3>
                 <p>Building responsive and high-performance web applications tailored to your needs.</p>
-                <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
             </div>
 
             <div class="service-card center-card">
@@ -146,23 +177,135 @@
                 </div>
                 <h3>UI/UX Design</h3>
                 <p>Crafting intuitive and visually stunning user interfaces for an immersive experience.</p>
-                <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
-            </div>
-
+              </div>
             <div class="service-card">
                 <div class="icon">
-                    <i class="fa-solid fa-database"></i>
+                    <i class="fa-solid fa-mobile-screen-button"></i>
                 </div>
-                <h3>Data Analytics</h3>
-                <p>Transforming complex data into actionable insights through advanced analytics.</p>
-                <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                <h3>Responsive Design</h3>
+                <p>Ensuring seamless user experiences across all devices with responsive design.</p>
+                 </div>
+            <div class="service-card">
+                <div class="icon">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                <h3>Backend Development</h3>
+                <p>Developing robust backend systems and APIs for scalable applications.</p>
+                    </div>
+            <div class="service-card">
+                <div class="icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3>Security</h3>
+                <p>Implementing security best practices to protect applications and data.</p>
+                      </div>
+        </div>
+
+    </section>
+<!---------------projects---------------------->
+<section id="projects" class="projects">
+<h2>Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card" onclick="openProjectModal('hospital')">
+            <img src="project1.png" alt="Hospital Management System">
+            <h3>Hospital Management System</h3>
+            <p>Developed a web-based system for managing patient records, appointments, and database storage using PHP and MySQL.</p>
+        </div>
+        <div class="project-card" onclick="openProjectModal('recommendation')">
+            <img src="project2.png" alt="Smart Recommendation System">
+            <h3>Smart Recommendation System</h3>
+            <p>Built a recommendation engine to provide personalized suggestions and improve user experience using JavaScript, PHP, and MySQL.</p>
+        </div>
+        <div class="project-card" onclick="openProjectModal('waste')">
+            <img src="project3.png" alt="Waste Analysis Portal">
+            <h3>Waste Analysis Portal</h3>
+            <p>Developed a platform for monitoring and analyzing waste management data with reporting tools for better decision-making.</p>
+        </div>
+        <div class="project-card" onclick="openProjectModal('propertyhunt')">
+            <img src="project4.png" alt="Property Hunt">
+            <h3>Property Hunt</h3>
+            <p>Created a real-estate property listing website with search and detailed property information display using PHP and MySQL.</p>
+        </div>
+        <div class="project-card" onclick="openProjectModal('portfolio')">
+            <img src="project5.png" alt="Portfolio Website">
+            <h3>Portfolio Website</h3>
+            <p>Designed and developed a personal portfolio website to showcase projects, skills, and professional information.</p>
+        </div>
+    </div>
+</section>  
+<!---Project Modal--->
+<!--------hospital management system modal-------->
+<div id="project-modal" class="project-modal hidden" onclick="closeProjectModal(event)">
+        <div class="project-modal-content" onclick="event.stopPropagation()">
+            <button class="project-modal-close" type="button" aria-label="Close project details" onclick="closeProjectModal(event)">&times;</button>
+            <div class="project-modal-header">
+                <h2>Hospital Management System</h2>
+                <p class="project-modal-subtitle">Full-stack hospital management platform with secure patient, appointment, and billing workflows.</p>
+            </div>
+            <div class="project-modal-body">
+                <h3>Project Overview</h3>
+                <p>The Hospital Management System is a full-stack web application developed to simplify and automate hospital operations. It provides a centralized platform for managing patients, doctors, appointments, medical records, laboratory reports, pharmacy services, billing, and administrative tasks.</p>
+                <p>The system reduces manual paperwork, improves efficiency, and ensures secure management of hospital data through an intuitive dashboard.</p>
+                <h3>Problem Statement</h3>
+                <p>Traditional hospital management often relies on manual record-keeping, leading to delays, data redundancy, and inefficient communication between departments. This project addresses these challenges by providing a digital solution that streamlines hospital workflows and improves patient care.</p>
+                <h3>Objective</h3>
+                <p>To develop a secure and user-friendly hospital management platform that enables efficient management of hospital operations while reducing paperwork and enhancing productivity.</p>
+                <h3>Features</h3>
+                <ul>
+                    <li>Secure Login & Authentication</li>
+                    <li>Dashboard with Hospital Statistics</li>
+                    <li>Patient Registration & Profile Management</li>
+                    <li>Doctor Management</li>
+                    <li>Appointment Scheduling</li>
+                    <li>Electronic Medical Records</li>
+                    <li>Laboratory Test Management</li>
+                    <li>Pharmacy Management</li>
+                    <li>Billing & Invoice Generation</li>
+                    <li>Staff Management</li>
+                    <li>Reports & Analytics</li>
+                    <li>Search & Filter Functionality</li>
+                    <li>Responsive Design</li>
+                </ul>
+                <h3>Technologies Used</h3>
+                <p>HTML, CSS, Tailwind CSS, JavaScript, Node.js, Express.js, MongoDB,  Git & GitHub</p>
+                <h3>My Contribution</h3>
+                <p>Designed and developed the complete application, including the user interface, backend functionality, database structure, authentication system, and all core modules. Implemented CRUD operations, appointment scheduling, billing, patient records, laboratory and pharmacy management, and integrated a MySQL database to ensure secure and efficient data management.</p>
+                <h3>Key Highlights</h3>
+                <ul>
+                    <li>Responsive and modern dashboard interface</li>
+                    <li>Secure role-based authentication</li>
+                    <li>Dynamic database integration</li>
+                    <li>Automated appointment and billing management</li>
+                    <li>Organized and scalable code structure</li>
+                    <li>Improved hospital workflow through digital automation</li>
+                </ul>
+                <h3>Outcome</h3>
+                <p>The Hospital Management System successfully digitizes hospital operations, providing a centralized and efficient platform for healthcare management. It improves administrative efficiency, minimizes manual errors, enhances patient record management, and delivers a seamless experience for hospital staff and patients.</p>
             </div>
         </div>
-    </section>
-<!-----------------contact---------------------->
-<section id="contact" class="contact">
-    <h2>Contact</h2>
-    <span class="tag">GET IN TOUCH</span>
+    </div>
+
+    <!---------------------experience---------------------->
+    <div class="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Web Developer</h3>
+                <p class="date">January 2023 - Present</p>
+                <p>Developed and maintained responsive websites using HTML, CSS, and JavaScript. Collaborated with design teams to implement user-friendly interfaces.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Intern - Web Development</h3>
+                <p class="date">June 2022 - December 2022</p>
+                <p>Assisted in the development of web applications and performed testing to ensure functionality and usability.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-----------------contact---------------------->
+    <section id="contact" class="contact">
+        <h2>Contact</h2>
+        <span class="tag">GET IN TOUCH</span>
 
     <div class="contact-grid">
         <div class="contact-card">
@@ -197,8 +340,5 @@
             <a href="mailto:chetanpatel171005@gmail.com">Email</a>
         </div>
     </footer>
-    <style>
-
-    </style>
 </body>
 </html>
