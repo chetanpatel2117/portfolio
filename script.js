@@ -63,4 +63,78 @@ document.addEventListener('DOMContentLoaded', () => {
   navToggle?.addEventListener('click', () => {
     navLinksEl?.classList.toggle('open');
   });
+
+  // Contact form submit -> Google Sheets via Apps Script
+  const form = document.querySelector('#contact-form');
+  const status = document.querySelector('#form-status');
+  const scriptURL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form || !status) return;
+
+    status.textContent = 'Sending...';
+    status.className = 'form-status sending';
+
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (response.ok && result.status === 'success') {
+        status.textContent = 'Message sent successfully!';
+        status.className = 'form-status success';
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Unable to send message');
+      }
+    } catch (error) {
+      status.textContent = 'Oops! Something went wrong. Please try again.';
+      status.className = 'form-status error';
+      console.error('Form submit error:', error);
+    }
+  });
+});
+
+// Separate script for contact form submission to Google Sheets via Apps Script
+const scriptURL = "https://script.google.com/macros/s/AKfycbx26EecSOYwdk5Wp2qR2gzNZ0I7V25XTlJc603Ysay_0GOln0cH5Hmc-SDq1q27bbH3/exec";
+
+document.getElementById("contact-form")
+.addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const formData = {
+        name: this.name.value,
+        email: this.email.value,
+        message: this.message.value
+    };
+
+    const status = document.getElementById("form-status");
+
+    try {
+        const response = await fetch(scriptURL, {
+            method: "GET",
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if(result.result === "success"){
+            status.innerHTML = "Message Sent Successfully!";
+            this.reset();
+        }
+    } catch(error){
+        status.innerHTML = "Error sending message!";
+    }
 });

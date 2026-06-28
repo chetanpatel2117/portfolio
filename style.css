@@ -468,6 +468,24 @@ footer .footer-links {
     display: flex;
     gap: 20px;
 }
+
+.form-status {
+    font-size: 16px;
+    margin-top: 8px;
+    color: #ffffff;
+}
+
+.form-status.sending {
+    color: #ffd966;
+}
+
+.form-status.success {
+    color: #8ee98f;
+}
+
+.form-status.error {
+    color: #ff6b6b;
+}
 footer .footer-links a {
     text-decoration: none;
     color: white;

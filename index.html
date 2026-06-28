@@ -29,7 +29,7 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <button class="talk-btn">Let's Talk</button>
+            <a href="https://wa.me/919879525831" class="talk-btn" style="text-decoration:none;" target="_blank" rel="noopener">Let's Talk</a>
         </nav>
     </header>
 
@@ -59,7 +59,7 @@
 
             <div class="hero-buttons">
                 <button class="primary-btn">Hire Me</button>
-                <button class="secondary-btn">Contact Me</button>
+                <button href="#contact" class="secondary-btn">Contact Me</button>
             </div>
 
             <div class="social-icons">
@@ -171,7 +171,7 @@
         </div>
         <div class="contact-card">
             <h3>Phone</h3>
-            <p>+91 12345 67890</p>
+            <p>+91 98795 25831</p>
         </div>
         <div class="contact-card">
             <h3>Location</h3>
@@ -179,11 +179,12 @@
         </div>
     </div>
 
-    <form class="contact-form" action="#" method="post">
+    <form id="contact-form" class="contact-form" action="#" method="post">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
+        <p id="form-status" class="form-status"></p>
     </form>
 </section>
     <!-- Footer -->
