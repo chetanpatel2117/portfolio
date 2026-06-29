@@ -547,23 +547,84 @@ header {
 <!-----------------experience---------------------->
 .experience {
     padding: 120px 60px;
-}
-.experience h2 {    
+}  
+.experience h2 {
     font-size: 60px;
     margin-bottom: 20px;
+    margin-top: 80px;
 }
 .experience h2 span {
     color: #00eaff;
-}   
+} 
+.timeline{
+    position: relative;
+    margin-top: 50px;
+    padding-left: 30px;
+    border-left: 2px solid #00eaff;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 30px;
+}
+.timeline-item::before {    
+    
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background-color: #00eaff;
+    border-radius: 50%;
+}
+.timeline-item h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+.timeline-item span {
+    display: block;
+    color: #c4c9d4;
+    margin-bottom: 10px;
+}
+.timeline-item p {
+    color: #c4c9d4;
+    line-height: 1.6;
+}
+.timeline-item .description {
+    margin-top: 10px;
+}
+.timeline-item .description ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.timeline-item .description ul li {
+    margin-bottom: 8px;
+    color: #c4c9d4;
+    line-height: 1.6;
+}
+.timeline-item .description ul li::before {
+    content: '•';
+    color: #00eaff;
+    margin-right: 8px;
+}
+.timeline-item .description ul li a {
+    color: #00eaff;
+    text-decoration: none;
+}
+
 
 <!-----------------contact---------------------->
 .contact {
     padding: 120px 60px;
     text-align: center;
+    margin-top: 150px;
 }
 .contact h2 {
     font-size: 60px;
     margin-bottom: 20px;
+    margin-top: 240px;
+
 }
 .contact h2 span {
     color: #00eaff;
@@ -650,7 +711,6 @@ footer .footer-links {
     display: flex;
     gap: 20px;
 }
-
 .form-status {
     font-size: 16px;
     margin-top: 8px;
