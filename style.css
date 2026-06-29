@@ -634,6 +634,7 @@ header {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 30px;
+    margin-inline-start: auto;
 }
 .contact-card {
     background: #01102b;
