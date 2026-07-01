@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('in-view');
-        const items = entry.target.querySelectorAll('h2, p, .skill-card, .service-card, .contact-card, .hero-content, .hero-image');
+        const items = entry.target.querySelectorAll('h2, p, .skill-card, .skill-item, .project-card, .project-item, .contact-form, .form-group, .form-status');
         items.forEach((el, i) => {
           el.classList.add('reveal-item');
           el.style.transitionDelay = `${i * 100}ms`;
