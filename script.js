@@ -1,6 +1,88 @@
+
+//backgound animation
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+const particles = [];
+const particleCount = 80;
+const maxDistance = 120;
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = Math.random() * 2 + 1;
+    this.opacity = Math.random() * 0.5 + 0.3;
+  }
+  
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+  
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(100, 150, 255, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      if (dist < maxDistance) {
+        const opacity = (1 - dist / maxDistance) * 0.2;
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(100, 150, 255, ${opacity})`;
+        ctx.lineWidth = 1;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  
+  drawLines();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
 document.addEventListener('DOMContentLoaded', () => {
+ 
   // --- Reveal on scroll ---
-  const sections = document.querySelectorAll('section');
+  const sections = document.querySelectorAll('section, .experience');
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -22,31 +104,73 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-links a, header nav a');
 
   function updateActiveNav() {
+    const top = window.scrollY + 160;
     let currentId = '';
+
     sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.2) {
-        currentId = sec.id || currentId;
+      const offset = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (top >= offset && top < offset + height) {
+        currentId = sec.id || '';
       }
     });
-    navLinks.forEach(a => {
-      a.classList.toggle('active', a.getAttribute('href') === '#' + currentId);
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const linkId = href?.startsWith('#') ? href.slice(1) : '';
+      link.classList.toggle('active', linkId === currentId);
     });
   }
 
   updateActiveNav();
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
 
+  // typed text animation
+  const typedTextEl = document.getElementById('typed-text');
+  const typedStrings = ["Full Stack Web Developer", "UI/UX Designer", "Problem Solver"];
+  let typedIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    if (!typedTextEl) return;
+
+    const currentString = typedStrings[typedIndex];
+    if (isDeleting) {
+      typedTextEl.textContent = currentString.substring(0, charIndex--);
+      if (charIndex < 0) {
+        isDeleting = false;
+        typedIndex = (typedIndex + 1) % typedStrings.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, 50);
+      }
+    } else {
+      typedTextEl.textContent = currentString.substring(0, charIndex++);
+      if (charIndex > currentString.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+      } else {
+        setTimeout(type, 100);
+      }
+    }
+  }
+
+  type(); 
   // Smooth scroll for anchor links
   navLinks.forEach(a => {
     a.addEventListener('click', (e) => {
       const href = a.getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
+
+        navLinks.forEach(link => link.classList.remove('active'));
+        a.classList.add('active');
+
         const target = document.querySelector(href);
         if (target) {
           const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight() - 8;
           window.scrollTo({ top, behavior: 'smooth' });
+          setTimeout(updateActiveNav, 300);
         }
         document.querySelector('.nav-links')?.classList.remove('open');
       }
@@ -60,59 +184,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sticky header + highlight while scrolling
   window.addEventListener('scroll', () => {
-    const top = window.scrollY;
-    sections.forEach(sec => {
-      const offset = sec.offsetTop - 150;
-      const height = sec.offsetHeight;
-      const id = sec.getAttribute('id');
-      if (id && top >= offset && top < offset + height) {
-        navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href')?.includes(id)));
-      }
-    });
+    updateActiveNav();
     const headerEl = document.querySelector('.header') || header;
-    headerEl?.classList.toggle('sticky', window.scrollY > 100);
+    headerEl?.classList.toggle('sticky', window.scrollY > 80);
   }, { passive: true });
 
-  // --- Contact form submission (single, consolidated handler) ---
-  // Replace YOUR_DEPLOYMENT_ID with your Apps Script deployment id.
-  const scriptURL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
-  const form = document.querySelector('#contact-form');
-  const status = document.querySelector('#form-status');
+  // --- Contact form submission using EmailJS ---
+  const contactForm = document.querySelector('#contact-form');
+  const formStatus = document.querySelector('#form-status');
 
-  async function handleFormSubmit(e) {
-    e.preventDefault();
-    if (!form || !status) return;
-    status.textContent = 'Sending...';
-    status.className = 'form-status sending';
+  if (contactForm && formStatus) {
+    // Check if EmailJS is loaded
+    if (typeof emailjs === 'undefined') {
+      console.error('EmailJS library not loaded. Check CDN in HTML.');
+      formStatus.textContent = 'Email service not ready. Refresh page.';
+      formStatus.className = 'form-status error';
+      return;
+    }
 
+    // Initialize EmailJS
     try {
-      // Prefer sending FormData (Apps Script Web Apps often accept form-encoded bodies)
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        body: new FormData(form),
+      emailjs.init({
+        publicKey: 'P4F5msFDBUeTQft1k',
+      });
+      console.log('✓ EmailJS initialized successfully');
+    } catch (error) {
+      console.error('EmailJS init error:', error);
+    }
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      formStatus.textContent = 'Sending...';
+      formStatus.className = 'form-status sending';
+
+      console.log('Form submitted with data:', {
+        name: this.name?.value,
+        email: this.email?.value,
+        message: this.message?.value,
       });
 
-      // Try to parse JSON, fallback to text
-      let resultText = '';
-      try { resultText = await response.text(); } catch (e) { resultText = ''; }
-
-      if (response.ok) {
-        status.textContent = 'Message sent successfully!';
-        status.className = 'form-status success';
-        form.reset();
-      } else {
-        status.textContent = 'Error sending message.';
-        status.className = 'form-status error';
-        console.error('Form submit failed:', response.status, resultText);
-      }
-    } catch (error) {
-      status.textContent = 'Oops! Something went wrong. Please try again.';
-      status.className = 'form-status error';
-      console.error('Form submit error:', error);
-    }
+      emailjs
+        .sendForm('service_uv1rh74', 'template_5ocmmhm', this)
+        .then((response) => {
+          console.log('✓ Message sent successfully!', response);
+          formStatus.textContent = 'Message sent successfully!';
+          formStatus.className = 'form-status success';
+          contactForm.reset();
+          // Clear success message after 5 seconds
+          setTimeout(() => {
+            formStatus.textContent = '';
+            formStatus.className = '';
+          }, 5000);
+        })
+        .catch((error) => {
+          console.error('❌ EmailJS Error Details:', {
+            status: error.status,
+            text: error.text,
+            message: error.message,
+            full: error,
+          });
+          
+          let errorMsg = 'Failed to send message. ';
+          if (error.status === 0) {
+            errorMsg += 'Check your internet connection.';
+          } else if (error.status === 400) {
+            errorMsg += 'Invalid form data or template.';
+          } else if (error.status === 401) {
+            errorMsg += 'Authentication failed. Check EmailJS credentials.';
+          } else if (error.status === 403) {
+            errorMsg += 'Service blocked. Check account limits.';
+          } else {
+            errorMsg += 'Try again later. (Error: ' + error.status + ')';
+          }
+          
+          formStatus.textContent = errorMsg;
+          formStatus.className = 'form-status error';
+        });
+    });
+  } else {
+    console.error('Contact form or status element not found');
   }
-
-  form?.addEventListener('submit', handleFormSubmit);
 });
 
 const projectData = {
@@ -377,3 +528,72 @@ window.closeResumeModal = function closeResumeModal(event) {
   document.body.style.overflow = '';
 };
     
+
+window.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('bg-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = 0;
+  let height = 0;
+  let particles = [];
+
+  function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * dpr);
+    canvas.height = Math.floor(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    particles = Array.from({ length: Math.min(60, Math.floor(width / 24)) }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 2 + 0.5,
+      speed: Math.random() * 0.5 + 0.2,
+      alpha: Math.random() * 0.4 + 0.1,
+    }));
+  }
+
+  function drawBackground() {
+    ctx.clearRect(0, 0, width, height);
+
+    const gradient = ctx.createRadialGradient(width * 0.25, height * 0.2, 50, width * 0.25, height * 0.2, width * 0.6);
+    gradient.addColorStop(0, 'rgba(0, 234, 255, 0.16)');
+    gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    particles.forEach((p, index) => {
+      p.y -= p.speed;
+      if (p.y < -10) p.y = height + 10;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0, 234, 255, ${p.alpha})`;
+      ctx.fill();
+
+      for (let i = index + 1; i < particles.length; i += 1) {
+        const q = particles[i];
+        const dx = p.x - q.x;
+        const dy = p.y - q.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 140) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(q.x, q.y);
+          ctx.strokeStyle = `rgba(0, 234, 255, ${0.08 * (1 - dist / 140)})`;
+          ctx.stroke();
+        }
+      }
+    });
+  }
+
+  function animate() {
+    drawBackground();
+    requestAnimationFrame(animate);
+  }
+
+  resizeCanvas();
+  animate();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+});

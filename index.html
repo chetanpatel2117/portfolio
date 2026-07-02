@@ -9,8 +9,11 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 </head>
 <body>
+     <canvas id="bg-canvas"></canvas>
 
     <!-- Navbar -->
     <header>
@@ -38,6 +41,7 @@
             <h1>
                 Hi, I'm CHETAN PATEL,
                 </h1>
+                <a id="typed-text" class="typed-text"></a>
             <p>
                 I specialize in architecting high-performance digital systems and
                 immersive user experiences. Combining precision code with futuristic
@@ -50,7 +54,7 @@
             </div>
             <div class="hero-buttons">
                 <button class="primary-btn" type="button" onclick="openResumeModal()">download resume</button>
-                <button href="#projects" class="secondary-btn">view projects</button>
+                <a href="#projects" class="secondary-btn">view projects</a>
             </div>
 
 
@@ -122,7 +126,6 @@
 <!-----------skills---------------->
 <section id="skills" class="skills">
     <h2>Skills</h2>
-    <span class="tag">WHAT I KNOW</span>
 
     <div class="skills-grid">
         <div class="skill-card">
@@ -286,7 +289,7 @@
     </div>
 
     <!---------------------experience---------------------->
-    <div class="experience">
+    <section id="experience" class="experience">
         <h2>Experience</h2>
         <div class="timeline">
             <div class="timeline-item">
@@ -298,7 +301,7 @@
             </div>
      
         </div>
-    </div>
+    </section>
 
     <!-----------------contact---------------------->
     <section id="contact" class="contact">
