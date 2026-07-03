@@ -25,10 +25,9 @@ This portfolio website is designed to present my work, technical skills, and ach
 
 ## 🛠️ Built With
 
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
-- Tailwind CSS
 
 ## 📂 Sections
 
