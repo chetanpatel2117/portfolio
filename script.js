@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       emailjs
-        .sendForm('service_uv1rh74', 'template_5ocmmhm', this)
+        .sendForm('service_1rle7ho', 'template_5ocmmhm', this)
         .then((response) => {
           console.log('✓ Message sent successfully!', response);
           formStatus.textContent = 'Message sent successfully!';
