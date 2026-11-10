@@ -6,10 +6,11 @@ A responsive personal portfolio built with plain HTML, CSS, and JavaScript. No p
 
 - Home and resume download
 - About and technical skills
-- Areas of focus
+- Areas of focus with a pointer-responsive skills highlight
 - Project gallery with keyboard-accessible detail dialogs
 - Education and internship experience
 - Contact details and EmailJS contact form
+- Responsive particle background that respects reduced-motion preferences
 
 ## Projects
 

@@ -20,29 +20,48 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
       const linkId = href?.startsWith('#') ? href.slice(1) : '';
-      link.classList.toggle('active', linkId === currentId);
+      const isActive = linkId === currentId;
+      link.classList.toggle('active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
     });
   }
 
   updateActiveNav();
 
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinksEl = document.querySelector('.nav-links');
+
+  function setNavigationOpen(isOpen) {
+    navLinksEl?.classList.toggle('open', isOpen);
+    navToggle?.setAttribute('aria-expanded', String(isOpen));
+    navToggle?.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    const icon = navToggle?.querySelector('i');
+    icon?.classList.toggle('fa-bars', !isOpen);
+    icon?.classList.toggle('fa-xmark', isOpen);
+  }
+
   navLinks.forEach(a => {
     a.addEventListener('click', () => {
       const href = a.getAttribute('href');
       if (href && href.startsWith('#')) {
-        document.querySelector('.nav-links')?.classList.remove('open');
-        document.querySelector('.nav-toggle')?.setAttribute('aria-expanded', 'false');
-        document.querySelector('.nav-toggle')?.setAttribute('aria-label', 'Open navigation');
+        setNavigationOpen(false);
       }
     });
   });
 
-  const navToggle = document.querySelector('.nav-toggle');
-  const navLinksEl = document.querySelector('.nav-links');
   navToggle?.addEventListener('click', () => {
-    const isOpen = navLinksEl?.classList.toggle('open') ?? false;
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-    navToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+    setNavigationOpen(!navLinksEl?.classList.contains('open'));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinksEl?.classList.contains('open')) {
+      setNavigationOpen(false);
+      navToggle?.focus();
+    }
   });
 
   window.addEventListener('scroll', () => {
@@ -52,6 +71,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const currentYear = document.querySelector('#current-year');
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const revealTargets = new Set(document.querySelectorAll('main section, footer'));
+    const revealItems = document.querySelectorAll(
+      '.hero-content, .hero-image, .about-container, .about-text, .info-boxes > *, .skills-grid > *, .services-grid > *, .projects-grid > *, .timeline > *, .contact-grid > *, .contact-form',
+    );
+
+    revealItems.forEach((element, index) => {
+      element.classList.add('scroll-reveal-item');
+      element.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
+      revealTargets.add(element);
+    });
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -6% 0px',
+    });
+
+    revealTargets.forEach((element) => {
+      element.classList.add('scroll-reveal');
+      revealObserver.observe(element);
+    });
+  }
+
+  const skillsSection = document.querySelector('.skills');
+  if (skillsSection && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    skillsSection.addEventListener('pointermove', (event) => {
+      const sectionBounds = skillsSection.getBoundingClientRect();
+      skillsSection.style.setProperty('--mouse-x', `${event.clientX - sectionBounds.left}px`);
+      skillsSection.style.setProperty('--mouse-y', `${event.clientY - sectionBounds.top}px`);
+      skillsSection.style.setProperty('--spotlight-opacity', '1');
+
+      const card = event.target.closest('.skill-card');
+      if (!card || !skillsSection.contains(card)) return;
+
+      const cardBounds = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${event.clientX - cardBounds.left}px`);
+      card.style.setProperty('--y', `${event.clientY - cardBounds.top}px`);
+    });
+
+    skillsSection.addEventListener('pointerleave', () => {
+      skillsSection.style.setProperty('--spotlight-opacity', '0');
+    });
+  }
 
   const contactForm = document.querySelector('#contact-form');
   const formStatus = document.querySelector('#form-status');
@@ -189,6 +258,61 @@ const projectData = {
       <p>Built the page structure, responsive styling, project gallery, navigation, and contact section using HTML, CSS, and JavaScript.</p>
     `,
   },
+  fleetdash: {
+    title: 'FleetDash',
+    subtitle: 'Real-Time Fleet Management System',
+    body: `
+      <h3>Project overview</h3>
+      <p>A fleet management platform for monitoring vehicles, telemetry, geofences, and fleet activity through an interactive dashboard.</p>
+      <h3>Key features</h3>
+      <ul>
+        <li>Real-time vehicle location and fleet monitoring</li>
+        <li>Vehicle telemetry and performance data</li>
+        <li>Interactive map and geofence entry/exit monitoring</li>
+        <li>Fleet analytics and real-time vehicle alerts</li>
+      </ul>
+      <h3>Technology stack</h3>
+      <p>React.js, TypeScript, Node.js, Express.js, MongoDB, Redis, Socket.IO, Worker Threads, Canvas API, and Turf.js</p>
+      <h3>My role and contributions</h3>
+      <ul>
+        <li>Served as team leader and contributed to backend architecture.</li>
+        <li>Handled initial project setup, backend structure, API development, and database integration.</li>
+        <li>Coordinated frontend/backend integration and collaborated on development and testing.</li>
+      </ul>
+      <h3>Project objective</h3>
+      <p>Help businesses track vehicles, monitor performance, improve operational visibility, and manage fleet activity in real time.</p>
+      <p><strong>Project type:</strong> Full-stack web application<br><strong>Domain:</strong> Fleet management and real-time tracking</p>
+    `,
+  },
+  ledgerguard: {
+    title: 'LedgerGuard',
+    subtitle: 'Dynamic Multi-Tenant Zero-Knowledge Billing Engine',
+    body: `
+      <h3>Project overview</h3>
+      <p>A multi-tenant billing management platform for organizations to manage billing and resource usage, with a focus on data isolation, secure authentication, reliable transactions, and duplicate payment prevention.</p>
+      <h3>Key features</h3>
+      <ul>
+        <li>JWT-based login and registration</li>
+        <li>Organization-level multi-tenant data isolation</li>
+        <li>Dynamic database connection management</li>
+        <li>Redis-based distributed locking</li>
+        <li>MongoDB transaction management</li>
+        <li>Real-time usage and cost analytics</li>
+        <li>Billing ledger and transaction history</li>
+      </ul>
+      <h3>Technology stack</h3>
+      <p>React.js, TypeScript, Chart.js, Node.js, Express.js, MongoDB, Mongoose, Redis, and JWT.</p>
+      <h3>My role and contributions</h3>
+      <ul>
+        <li>Contributed to project architecture and initial setup.</li>
+        <li>Developed frontend and backend modules and integrated authentication and database functionality.</li>
+        <li>Worked on the dashboard and billing ledger, and contributed to module integration and testing.</li>
+      </ul>
+      <h3>Project objective</h3>
+      <p>Develop a reliable billing platform that supports organization-level data isolation, secure operations, and consistent transaction processing.</p>
+      <p><strong>Project type:</strong> Full-stack web application<br><strong>Domain:</strong> FinTech and multi-tenant SaaS</p>
+    `,
+  },
 };
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -206,18 +330,19 @@ window.addEventListener('DOMContentLoaded', () => {
     lastProjectTrigger?.focus();
   }
 
-  document.querySelectorAll('[data-project]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const project = projectData[button.dataset.project];
+  document.querySelectorAll('[data-project]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const project = projectData[trigger.dataset.project];
       if (!project || !projectModal || !projectTitle || !projectSubtitle || !projectBody || !projectClose) {
-        console.error(`Unable to open project details for "${button.dataset.project}".`);
+        console.error(`Unable to open project details for "${trigger.dataset.project}".`);
         return;
       }
 
       projectTitle.textContent = project.title;
       projectSubtitle.textContent = project.subtitle;
       projectBody.innerHTML = project.body;
-      lastProjectTrigger = button;
+      lastProjectTrigger = trigger;
       projectModal.classList.remove('hidden');
       document.body.classList.add('modal-open');
       projectClose.focus();
@@ -229,8 +354,31 @@ window.addEventListener('DOMContentLoaded', () => {
     if (event.target === projectModal) closeProjectModal();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && projectModal && !projectModal.classList.contains('hidden')) {
+    if (!projectModal || projectModal.classList.contains('hidden')) return;
+
+    if (event.key === 'Escape') {
       closeProjectModal();
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      const focusableElements = projectModal.querySelectorAll(
+        'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (!firstElement || !lastElement) {
+        event.preventDefault();
+      } else if (!projectModal.contains(document.activeElement)) {
+        event.preventDefault();
+        firstElement.focus();
+      } else if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
     }
   });
 
