@@ -4,119 +4,99 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js" defer></script>
+    <meta name="description" content="Chetan Patel is a Computer Science and Engineering student focused on web development. Explore his projects, skills, education, and experience.">
+    <meta name="theme-color" content="#081426">
+    <title>Chetan Patel | Web Developer Portfolio</title>
+    <link rel="stylesheet" href="css/style.css?v=8" />
+    <script src="js/script.js?v=8" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 
 </head>
 <body>
-     <canvas id="bg-canvas"></canvas>
-
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Navbar -->
     <header>
         <nav class="navbar">
-            <div class="logo">PORTFOLIO</div>
-            <button class="nav-toggle" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></button>
+            <a class="logo" href="#home" aria-label="Chetan Patel, home">CP<span>.</span></a>
+            <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
 
-            <ul class="nav-links">
+            <ul class="nav-links" id="primary-navigation">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <a href="https://wa.me/919879525831" class="talk-btn" style="text-decoration:none;" target="_blank" rel="noopener">Let's Talk</a>
+            <a href="mailto:chetanpatel171005@gmail.com" class="talk-btn">Let’s talk <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
         </nav>
     </header>
 
+    <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>
-                Hi, I'm CHETAN PATEL,
-                </h1>
-                <a id="typed-text" class="typed-text"></a>
-            <p>
-                I specialize in architecting high-performance digital systems and
-                immersive user experiences. Combining precision code with futuristic
-                aesthetics to build the web of tomorrow.
+            <p class="eyebrow hero-eyebrow"><span class="availability-dot"></span> Computer Science &amp; Engineering student</p>
+            <h1>Hi, I’m <span>Chetan Patel</span></h1>
+            <p class="hero-role"><span id="typed-text">Web developer</span></p>
+            <p class="hero-description">
+                I build responsive web experiences and practical applications.
+                I’m growing my skills through hands-on projects, internships, and
+                a curiosity for how things work.
             </p>
             <div class="social-icons">
-                <a href="https://www.linkedin.com/in/chetanpatel2117" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/chetanpatel2117" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-                <a href="mailto:chetanpatel171005@gmail.com"><i class="fa-regular fa-envelope"></i></a>
+                <a href="https://www.linkedin.com/in/chetanpatel2117" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+                <a href="https://github.com/chetanpatel2117" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                <a href="mailto:chetanpatel171005@gmail.com" aria-label="Email Chetan"><i class="fa-regular fa-envelope" aria-hidden="true"></i></a>
             </div>
             <div class="hero-buttons">
-                <button class="primary-btn" type="button" onclick="openResumeModal()">download resume</button>
-                <a href="#projects" class="secondary-btn">view projects</a>
+                <a class="primary-btn" href="assets/resume/Chetan Patel resume (1).pdf" download="Chetan Patel Resume.pdf">Download resume <i class="fa-solid fa-download" aria-hidden="true"></i></a>
+                <a href="#projects" class="secondary-btn">Explore projects <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
             </div>
 
 
         </div>
            <div class="hero-image">
            <div class="glow-shape">
-        <img src="assets/images/chetan.png" alt="Profile Photo">
+        <img src="assets/images/chetan 2.o.png" alt="Portrait of Chetan Patel" fetchpriority="high">
            </div>
         </div>
 
     </section>
-    <br>
-    <br>    
-<!-- Resume Modal -->
-<div id="resume-modal" class="resume-modal hidden" onclick="closeResumeModal(event)">
-    <div class="resume-modal-content" onclick="event.stopPropagation()">
-        <button class="resume-modal-close" type="button" aria-label="Close resume preview" onclick="closeResumeModal(event)">&times;</button>
-        <div class="resume-modal-header">
-            <h2>Resume Preview</h2>
-            <p class="resume-modal-subtitle">Download the resume or view it in fullscreen.</p>
-        </div>
-        <div class="resume-modal-body">
-            <embed class="resume-embed" src="assets/resume/CV CHETAN.pdf" type="application/pdf" />
-        </div>
-        <div class="resume-actions">
-            <a class="resume-action-btn download-btn" href="assets/resume/CV CHETAN.pdf" download="CV CHETAN.pdf">Download Resume</a>
-            <a class="resume-action-btn view-btn" href="assets/resume/CV CHETAN.pdf" target="_blank" rel="noopener">View Fullscreen</a>
-        </div>
-    </div>
-</div>
-
 <!-- About -->
  <section id="about" class="about">
     <div class="about-container">
-        <img src="assets/images/about.png" alt="Profile Photo">
+        <img src="assets/images/about.png" alt="Chetan Patel working on a computer" loading="lazy">
     </div>
     <div class="about-text">
-        <h2>About <span>Me</span></h2>
+        <p class="eyebrow">A little about me</p>
+        <h2>Curious by nature.<br><span>Developer by choice.</span></h2>
         <p>
-            I'm a passionate developer with a keen interest in crafting
-            innovative solutions that blend cutting-edge technology
-            with sleek design. As a fresher entering the industry,
-            I'm eager to apply my knowledge to diverse projects, from
-            web applications to digital experiences. My expertise includes
-            system architecture, UI/UX design, and web development,
-            allowing me to create clean and engaging user journeys. I'm
-            enthusiastic about pushing the boundaries of what's possible
-            in the digital realm and am always eager to take on new
-            challenges that allow me to learn and grow.
+            I'm a Computer Science &amp; Engineering student at S. N. Patel
+            Institute of Technology, seeking an opportunity in software and web
+            development. I enjoy building responsive web applications and
+            bringing ideas to life with HTML, CSS, JavaScript, React, Node.js,
+            PHP, MySQL, and MongoDB. I'm eager to learn, contribute to a team,
+            and grow through real-world projects.
         </p>
          <div class="info-boxes">
 
             <div class="box">
                 <i class="fa-solid fa-location-dot"></i>
-                <h3>Location</h3>
-                <p>bardoli, surat, Gujarat</p>
+                <h3>Based in</h3>
+                <p>Bardoli, Surat, Gujarat, India</p>
             </div>
 
             <div class="box">
                 <i class="fa-solid fa-graduation-cap"></i>
-                <h3>Education</h3>
-                <p>Final Year B.E/CSE</p>
+                <h3>Currently studying</h3>
+                <p>B.E. Computer Science &amp; Engineering — Pursuing</p>
             </div>
 
         </div>
@@ -125,13 +105,14 @@
  </section>
 <!-----------skills---------------->
 <section id="skills" class="skills">
-    <h2>Skills</h2>
+    <p class="eyebrow">What I work with</p>
+    <h2>Skills &amp; technologies</h2>
 
     <div class="skills-grid">
         <div class="skill-card">
             <i class="fa-solid fa-code"></i>
             <h3>Front-end</h3>
-            <span>HTML, CSS, JavaScript</span>
+            <span>HTML5, CSS3, JavaScript, React.js</span>
         </div>
         <div class="skill-card">
             <i class="fa-solid fa-server"></i>
@@ -146,31 +127,37 @@
         <div class="skill-card">
             <i class="fa-solid fa-palette"></i>
             <h3>UI/UX design</h3>
-            <span>Photoshop</span>
+            <span>Figma, Adobe Photoshop</span>
         </div>
         <div class="skill-card">
             <i class="fa-solid fa-code"></i>
             <h3>Languages</h3>
-            <span>Python, JavaScript, Java</span>
+            <span>Java, Python, JavaScript</span>
         </div>
         <div class="skill-card">
             <i class="fa-solid fa-tools"></i>
             <h3>Tools</h3>
-            <span>Git, GitHub, VS Code</span>
+            <span>Git, GitHub, Visual Studio Code, Vercel</span>
+        </div>
+        <div class="skill-card">
+            <i class="fa-solid fa-people-group"></i>
+            <h3>Soft Skills</h3>
+            <span>Communication, teamwork, problem solving, time management, positive attitude</span>
         </div>
     </div>
 </section>
 
 <!------------------------------- Services -------------------------------->
     <section id="services" class="services">
-        <h2>Services</h2>
+        <p class="eyebrow">Skills in practice</p>
+        <h2>Areas of focus</h2>
         <div class="services-grid">
             <div class="service-card">
                 <div class="icon">
                     <i class="fa-solid fa-code"></i>
                 </div>
                 <h3>Web Development</h3>
-                <p>Building responsive and high-performance web applications tailored to your needs.</p>
+                <p>Building web pages and applications with a focus on clear structure and responsive layouts.</p>
 
             </div>
 
@@ -179,132 +166,155 @@
                     <i class="fa-solid fa-palette"></i>
                 </div>
                 <h3>UI/UX Design</h3>
-                <p>Crafting intuitive and visually stunning user interfaces for an immersive experience.</p>
+                <p>Planning clear page layouts and interactions that make websites easy to use.</p>
               </div>
             <div class="service-card">
                 <div class="icon">
                     <i class="fa-solid fa-mobile-screen-button"></i>
                 </div>
                 <h3>Responsive Design</h3>
-                <p>Ensuring seamless user experiences across all devices with responsive design.</p>
+                <p>Adapting layouts and navigation for mobile, tablet, and desktop screens.</p>
                  </div>
             <div class="service-card">
                 <div class="icon">
                     <i class="fa-solid fa-gear"></i>
                 </div>
                 <h3>Backend Development</h3>
-                <p>Developing robust backend systems and APIs for scalable applications.</p>
+                <p>Connecting web experiences to server-side logic, APIs, and databases.</p>
                     </div>
             <div class="service-card">
                 <div class="icon">
                     <i class="fa-solid fa-lock"></i>
                 </div>
-                <h3>Security</h3>
-                <p>Implementing security best practices to protect applications and data.</p>
+                <h3>Database Integration</h3>
+                <p>Working with MySQL and MongoDB to store and retrieve application data.</p>
                       </div>
         </div>
 
     </section>
 <!---------------projects---------------------->
 <section id="projects" class="projects">
+<p class="eyebrow">Selected work</p>
 <h2>Projects</h2>
+<p class="section-intro">A selection of web projects I’ve built and explored.</p>
     <div class="projects-grid">
-        <div class="project-card" onclick="openProjectModal('hospital')">
+        <button class="project-card" type="button" data-project="hospital" aria-label="View Hospital Management System details">
             <img src="assets/images/project1.png" alt="Hospital Management System">
             <h3>Hospital Management System</h3>
             <p>Developed a web-based system for managing patient records, appointments, and database storage using PHP and MySQL.</p>
-        </div>
-        <div class="project-card" onclick="openProjectModal('recommendation')">
+        </button>
+        <button class="project-card" type="button" data-project="recommendation" aria-label="View Smart Recommendation System details">
             <img src="assets/images/project2.png" alt="Smart Recommendation System">
             <h3>Smart Recommendation System</h3>
             <p>Built a recommendation engine to provide personalized suggestions and improve user experience using JavaScript, PHP, and MySQL.</p>
-        </div>
-        <div class="project-card" onclick="openProjectModal('waste')">
+        </button>
+        <button class="project-card" type="button" data-project="waste" aria-label="View Waste Analysis Portal details">
             <img src="assets/images/project3.png" alt="Waste Analysis Portal">
             <h3>Waste Analysis Portal</h3>
             <p>Developed a platform for monitoring and analyzing waste management data with reporting tools for better decision-making.</p>
-        </div>
-        <div class="project-card" onclick="openProjectModal('propertyhunt')">
+        </button>
+        <button class="project-card" type="button" data-project="propertyhunt" aria-label="View Property Hunt details">
             <img src="assets/images/project4.png" alt="Property Hunt">
             <h3>Property Hunt</h3>
             <p>Created a real-estate property listing website with search and detailed property information display using PHP and MySQL.</p>
-        </div>
-        <div class="project-card" onclick="openProjectModal('portfolio')">
+        </button>
+        <button class="project-card" type="button" data-project="portfolio" aria-label="View Portfolio Website details">
             <img src="assets/images/project5.png" alt="Portfolio Website">
             <h3>Portfolio Website</h3>
             <p>Designed and developed a personal portfolio website to showcase projects, skills, and professional information.</p>
+        </button>
+        <div class="project-card project-card-feature">
+            <img class="project-art" src="assets/images/fleetdash.png" alt="FleetDash real-time fleet management system project artwork" loading="lazy">
+            <div class="project-card-content"><span class="project-type">Web project</span>
+            <h3>FleetDash</h3>
+            <p>Real-Time Fleet Management System</p></div>
+        </div>
+        <div class="project-card project-card-feature">
+            <img class="project-art" src="assets/images/LedgerGuard.png" alt="LedgerGuard multi-tenant billing engine project artwork" loading="lazy">
+            <div class="project-card-content"><span class="project-type">Web project</span>
+            <h3>LedgerGuard</h3>
+            <p>Dynamic Multi-Tenant Zero-Knowledge Billing Engine</p></div>
         </div>
     </div>
 </section>  
 <!---Project Modal--->
 <!--------hospital management system modal-------->
-<div id="project-modal" class="project-modal hidden" onclick="closeProjectModal(event)">
-        <div class="project-modal-content" onclick="event.stopPropagation()">
-            <button class="project-modal-close" type="button" aria-label="Close project details" onclick="closeProjectModal(event)">&times;</button>
+<div id="project-modal" class="project-modal hidden" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+        <div class="project-modal-content">
+            <button class="project-modal-close" type="button" aria-label="Close project details">&times;</button>
             <div class="project-modal-header">
-                <h2>Hospital Management System</h2>
-                <p class="project-modal-subtitle">Full-stack hospital management platform with secure patient, appointment, and billing workflows.</p>
+                <h2 id="project-modal-title">Hospital Management System</h2>
+                <p class="project-modal-subtitle">A web app for organizing patient records and appointments.</p>
             </div>
             <div class="project-modal-body">
-                <h3>Project Overview</h3>
-                <p>The Hospital Management System is a full-stack web application developed to simplify and automate hospital operations. It provides a centralized platform for managing patients, doctors, appointments, medical records, laboratory reports, pharmacy services, billing, and administrative tasks.</p>
-                <p>The system reduces manual paperwork, improves efficiency, and ensures secure management of hospital data through an intuitive dashboard.</p>
-                <h3>Problem Statement</h3>
-                <p>Traditional hospital management often relies on manual record-keeping, leading to delays, data redundancy, and inefficient communication between departments. This project addresses these challenges by providing a digital solution that streamlines hospital workflows and improves patient care.</p>
-                <h3>Objective</h3>
-                <p>To develop a secure and user-friendly hospital management platform that enables efficient management of hospital operations while reducing paperwork and enhancing productivity.</p>
+                <h3>Project summary</h3>
+                <p>Developed a web-based system to organize patient records, appointments, and related hospital information.</p>
                 <h3>Features</h3>
                 <ul>
-                    <li>Secure Login & Authentication</li>
-                    <li>Dashboard with Hospital Statistics</li>
-                    <li>Patient Registration & Profile Management</li>
-                    <li>Doctor Management</li>
+                    <li>Patient records and profiles</li>
                     <li>Appointment Scheduling</li>
-                    <li>Electronic Medical Records</li>
-                    <li>Laboratory Test Management</li>
-                    <li>Pharmacy Management</li>
-                    <li>Billing & Invoice Generation</li>
-                    <li>Staff Management</li>
-                    <li>Reports & Analytics</li>
-                    <li>Search & Filter Functionality</li>
-                    <li>Responsive Design</li>
+                    <li>Organized hospital information</li>
+                    <li>Responsive web interface</li>
                 </ul>
                 <h3>Technologies Used</h3>
-                <p>HTML, CSS, Tailwind CSS, JavaScript, Node.js, Express.js, MongoDB,  Git & GitHub</p>
+                <p>HTML, CSS, JavaScript, PHP, MySQL</p>
                 <h3>My Contribution</h3>
-                <p>Designed and developed the complete application, including the user interface, backend functionality, database structure, authentication system, and all core modules. Implemented CRUD operations, appointment scheduling, billing, patient records, laboratory and pharmacy management, and integrated a MySQL database to ensure secure and efficient data management.</p>
-                <h3>Key Highlights</h3>
-                <ul>
-                    <li>Responsive and modern dashboard interface</li>
-                    <li>Secure role-based authentication</li>
-                    <li>Dynamic database integration</li>
-                    <li>Automated appointment and billing management</li>
-                    <li>Organized and scalable code structure</li>
-                    <li>Improved hospital workflow through digital automation</li>
-                </ul>
-                <h3>Outcome</h3>
-                <p>The Hospital Management System successfully digitizes hospital operations, providing a centralized and efficient platform for healthcare management. It improves administrative efficiency, minimizes manual errors, enhances patient record management, and delivers a seamless experience for hospital staff and patients.</p>
+                <p>Built the web interface and core record-management workflows, using PHP and MySQL to support application data.</p>
             </div>
         </div>
     </div>
 
-    <!---------------------experience---------------------->
-    <section id="experience" class="experience">
-        <h2>Experience</h2>
+    <!---------------------education---------------------->
+    <section id="education" class="experience education">
+        <h2>Education</h2>
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-content">
-                    <h3>Internship at Tech Solutions</h3>
-                    <span class="timeline-date">January 2026</span>
-                    <p>Assisted in developing web applications, performed code reviews, and contributed to the design of user interfaces.</p>
+                    <h3>B.E. in Computer Science &amp; Engineering</h3>
+                    <span class="timeline-date">Pursuing</span>
+                    <p>S. N. Patel Institute of Technology · Bardoli, Surat</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Higher Secondary Education (12th Grade)</h3>
+                    <span class="timeline-date">March 2023</span>
+                    <p>M. B. Vavadiya · Bardoli, Surat</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Secondary Education (10th Grade)</h3>
+                    <span class="timeline-date">May 2021</span>
+                    <p>M. B. Vavadiya · Bardoli, Surat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!---------------------experience---------------------->
+    <section id="experience" class="experience">
+        <h2>Internship Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Web Development Intern</h3>
+                    <span class="timeline-date">July 2026 — October 2026</span>
+                    <p>Infotact Solutions · Remote</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-content">
                     <h3>Web Development Intern</h3>
-                    <span class="timeline-date">Jul 2026 — Present</span>
-                    <p>Infotact Solutions · Remote</p>
-                    <p>Month internship program at Infotact Solutions while studying at S N PATEL INSTITUTE OF TECHNOLOGY.</p>
+                    <span class="timeline-date">15-Day Internship Program</span>
+                    <p>Brainy Beam Info-Tech Pvt. Ltd. · Ahmedabad</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Web Development Intern</h3>
+                    <span class="timeline-date">3-Month Internship Program</span>
+                    <p>IBM SkillsBuild · Virtual</p>
                 </div>
             </div>
         </div>
@@ -312,35 +322,45 @@
 
     <!-----------------contact---------------------->
     <section id="contact" class="contact">
-        <h2>Contact</h2>
-    <div class="contact-grid">
+            <p class="eyebrow">Get in touch</p>
+            <h2>Let’s build something <span>useful.</span></h2>
+            <p class="section-intro">Have a project or opportunity in mind? I’d be glad to hear from you.</p>
+        <div class="contact-layout">
+        <div class="contact-grid">
         <div class="contact-card">
+            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
             <h3>Email</h3>
             <p><a href="mailto:chetanpatel171005@gmail.com">chetanpatel171005@gmail.com</a></p>
         </div>
         <div class="contact-card">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <h3>Phone</h3>
-            <p>+91 98795 25831</p>
+            <p><a href="tel:+919879525831">+91 98795 25831</a></p>
         </div>
         <div class="contact-card">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
             <h3>Location</h3>
-            <p>bardoli, gujarat</p>
+            <p>Bardoli, Surat, Gujarat, India</p>
         </div>
     </div>
 
     <form id="contact-form" class="contact-form" action="#" method="post">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <label for="contact-name">Your name</label>
+        <input id="contact-name" type="text" name="name" placeholder="your name" autocomplete="name" required>
+        <label for="contact-email">Email address</label>
+        <input id="contact-email" type="email" name="email" placeholder="email@example.com" autocomplete="email" required>
+        <label for="contact-message">How can I help?</label>
+        <textarea id="contact-message" name="message" rows="5" placeholder="Tell me a little about your project..." required></textarea>
         <button type="submit">Send Message</button>
-        <p id="form-status" class="form-status"></p>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
+    </div>
 </section>
+    </main>
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">PORTFOLIO</div>
-        <div class="footer-text">© 2026 Chetan Patel. All rights reserved.</div>
-        <div class="footer-text">Designed and Developed by Chetan Patel</div>
+        <a class="footer-logo" href="#home">CP<span>.</span></a>
+        <div class="footer-text">© <span id="current-year">2026</span> Chetan Patel</div>
         <div class="footer-links">
             <a href="https://www.linkedin.com/in/chetanpatel2117" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/chetanpatel2117" target="_blank" rel="noopener">GitHub</a>

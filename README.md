@@ -1,93 +1,56 @@
-# 🌐 Personal Portfolio Website
+# Chetan Patel | Portfolio
 
-Welcome to my personal portfolio website! This portfolio showcases my skills, projects, education, certifications, and contact information as a passionate web developer.
+A responsive personal portfolio built with plain HTML, CSS, and JavaScript. No package installation or build step is required.
 
-## 🚀 Live Demo
+## Sections
 
-🔗 https://portfolio-inky-zeta-kxkfpp3un3.vercel.app
+- Home and resume download
+- About and technical skills
+- Areas of focus
+- Project gallery with keyboard-accessible detail dialogs
+- Education and internship experience
+- Contact details and EmailJS contact form
 
-## 📌 About
-
-This portfolio website is designed to present my work, technical skills, and achievements in a clean and responsive interface. It serves as my professional online presence for recruiters, clients, and collaborators.
-
-## ✨ Features
-
-- Modern and Responsive Design
-- Smooth Scrolling Navigation
-- Hero Section
-- About Me
-- Skills Section
-- Projects Showcase
-- Contact Form
-- Social Media Links
-- Mobile Friendly
-- Clean UI/UX
-
-## 🛠️ Built With
-
-- HTML
-- CSS
-- JavaScript
-
-## 📂 Sections
-
-- Home
-- About
-- Skills
-- Services
-- project
-- Contact
-
-## 📸 Projects Included
+## Projects
 
 - Hospital Management System
-- Property Hunt Website
 - Smart Recommendation System
-- Waste Analysis System
-- Personal Portfolio Website
+- Waste Analysis Portal
+- Property Hunt
+- FleetDash
+- LedgerGuard
+- Portfolio Website
 
-## 📁 Project Structure
+## Run locally
 
+Run a local static web server from the repository root:
+
+```powershell
+python -m http.server 5501 --bind 127.0.0.1
 ```
+
+Then open [http://127.0.0.1:5501](http://127.0.0.1:5501). Python is only needed to serve the files locally; the site has no runtime package dependencies.
+
+## Contact form
+
+The form uses the EmailJS browser SDK. Sending messages requires a connection and valid EmailJS service, template, and public-key configuration in `index.html` and `js/script.js`. Visitors can also contact Chetan directly at <mailto:chetanpatel171005@gmail.com>.
+
+## Project structure
+
+```text
 portfolio/
 ├── assets/
 │   ├── images/
-│   ├── icons/
 │   └── resume/
 ├── css/
+│   └── style.css
 ├── js/
+│   └── script.js
 ├── index.html
 └── README.md
 ```
 
-## 🚀 Getting Started
+## Profiles
 
-1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/portfolio.git
-```
-
-2. Open the project folder.
-
-3. Run `index.html` in your browser.
-
-## 📬 Contact
-
-**Name:** Chetan Patel
-
-- 📧 Email: chetanpatel171005@gmail.com  
-- 💼 LinkedIn: https://www.linkedin.com/in/chetanpatel2117
-- 💻 GitHub: https://github.com/chetanpatel2117
-
-## 🤝 Contributing
-
-Suggestions and feedback are always welcome. Feel free to fork this repository and submit a pull request.
-
-## ⭐ Support
-
-If you like this project, please consider giving it a ⭐ on GitHub.
-
----
-
-Made with ❤️ by **Chetan Patel**
+- LinkedIn: [chetanpatel2117](https://www.linkedin.com/in/chetanpatel2117)
+- GitHub: [chetanpatel2117](https://github.com/chetanpatel2117)
