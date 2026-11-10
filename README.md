@@ -11,6 +11,7 @@ A responsive personal portfolio built with plain HTML, CSS, and JavaScript. No p
 - Education and internship experience
 - Contact details and EmailJS contact form
 - Responsive particle background that respects reduced-motion preferences
+- Scroll-reveal sections and subtle card hover effects with reduced-motion support
 
 ## Projects
 

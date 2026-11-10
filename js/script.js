@@ -77,13 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealItems = document.querySelectorAll(
       '.hero-content, .hero-image, .about-container, .about-text, .info-boxes > *, .skills-grid > *, .services-grid > *, .projects-grid > *, .timeline > *, .contact-grid > *, .contact-form',
     );
-
-    revealItems.forEach((element, index) => {
-      element.classList.add('scroll-reveal-item');
-      element.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
-      revealTargets.add(element);
-    });
-
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -95,10 +88,26 @@ document.addEventListener('DOMContentLoaded', () => {
       rootMargin: '0px 0px -6% 0px',
     });
 
-    revealTargets.forEach((element) => {
-      element.classList.add('scroll-reveal');
-      revealObserver.observe(element);
-    });
+    let revealsInitialized = false;
+    const initializeReveals = () => {
+      if (revealsInitialized || document.hidden) return;
+      revealsInitialized = true;
+      document.removeEventListener('visibilitychange', initializeReveals);
+
+      revealItems.forEach((element, index) => {
+        element.classList.add('scroll-reveal-item');
+        element.style.setProperty('--reveal-delay', `${Math.min(index % 6, 5) * 70}ms`);
+        revealTargets.add(element);
+      });
+
+      revealTargets.forEach((element) => {
+        element.classList.add('scroll-reveal');
+        revealObserver.observe(element);
+      });
+    };
+
+    initializeReveals();
+    document.addEventListener('visibilitychange', initializeReveals);
   }
 
   const skillsSection = document.querySelector('.skills');

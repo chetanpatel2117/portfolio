@@ -1237,6 +1237,22 @@ footer {
         transition-duration: 0.01ms !important;
     }
 
+    .talk-btn:hover,
+    .primary-btn:hover,
+    .secondary-btn:hover,
+    .social-icons a:hover,
+    .hero-image:hover,
+    .hero-image:hover img,
+    .skill-card:hover,
+    .service-card:hover,
+    .project-card:hover,
+    .project-card:hover img,
+    .timeline-item:hover,
+    .contact-card:hover,
+    .contact-form button:hover {
+        transform: none !important;
+    }
+
     .scroll-reveal:not(.is-visible),
     .scroll-reveal-item:not(.is-visible),
     .scroll-reveal.is-visible,
